@@ -1,11 +1,8 @@
-<p align="center">
-  <a href="https://getartcraft.com/">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="docs/brand/artcraft-logo-white.svg">
-      <img alt="ArtCraft" src="docs/brand/artcraft-logo.svg" width="200">
-    </picture>
-  </a>
-</p>
+# Native iPad development fork
+
+See [IPAD.md](IPAD.md) for the experimental native iPadOS port, build commands, current limitations, and cloud Mac workflow. The original editor is pinned to PhotoCraft 0.16.0. Apple SDK linking, signing, and device verification are pending; this is not an official ArtCraft release.
+
+---
 
 <p align="center">
   <img src="assets/app-icon/hicolor/256x256/apps/ai.storyteller.photocraft.png" width="128" height="128" alt="PhotoCraft icon: an engraved nine-tailed fox on a blue tile">

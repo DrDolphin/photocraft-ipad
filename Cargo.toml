@@ -102,6 +102,14 @@ opt-level = 0
 lto = "thin"
 codegen-units = 1
 
+# A bounded-memory native iPad development build for hosted Apple-silicon runners.
+[profile.ipad-release]
+inherits = "release"
+lto = false
+codegen-units = 16
+opt-level = 2
+strip = "debuginfo"
+
 # The browser build (apps/photocraft-web, `data-cargo-profile` in its index.html). Hosts cap the
 # size of a single file (Cloudflare Pages/Workers: 25 MiB), and the wasm is downloaded on every
 # visit, so this profile optimizes for size: fat LTO, opt-level "z" for PhotoCraft's own crates,

@@ -1,0 +1,29 @@
+[package]
+name = "photocraft-ipad"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Experimental native iPadOS shell for PhotoCraft"
+
+[lints]
+workspace = true
+
+[features]
+default = ["heif"]
+heif = ["photocraft-codecs/heif"]
+
+[dependencies]
+eframe = { workspace = true, features = ["wgpu"] }
+egui = { workspace = true }
+photocraft-ui-egui = { workspace = true }
+photocraft-engine = { workspace = true }
+photocraft-io = { workspace = true }
+photocraft-codecs = { workspace = true }
+photocraft-format = { workspace = true }
+log = { workspace = true }
+
+[dev-dependencies]
+tempfile = "3"
+
+[target.'cfg(not(target_os = "ios"))'.dev-dependencies]
+egui_kittest = { workspace = true, features = ["wgpu", "eframe"] }

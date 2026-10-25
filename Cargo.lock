@@ -5049,6 +5049,22 @@ dependencies = [
 ]
 
 [[package]]
+name = "photocraft-ipad"
+version = "0.16.0"
+dependencies = [
+ "eframe",
+ "egui",
+ "egui_kittest",
+ "log",
+ "photocraft-codecs",
+ "photocraft-engine",
+ "photocraft-format",
+ "photocraft-io",
+ "photocraft-ui-egui",
+ "tempfile",
+]
+
+[[package]]
 name = "photocraft-ipp"
 version = "0.16.0"
 

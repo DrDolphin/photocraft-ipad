@@ -1,0 +1,79 @@
+name: iPad Native
+
+# Deliberately manual: preparing or pushing the fork does not start paid runners.
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: Build a native Simulator app or an unsigned device IPA
+        required: true
+        type: choice
+        default: simulator
+        options: [simulator, device]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ipad-native-${{ github.ref }}-${{ inputs.target }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: macos-15
+    timeout-minutes: 90
+    env:
+      CARGO_BUILD_JOBS: 2
+      CARGO_PROFILE_DEV_DEBUG: 0
+      CARGO_PROFILE_TEST_DEBUG: 0
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Install the Rust toolchain
+        run: |
+          rustup toolchain install 1.99.1 --profile minimal --component clippy --component rustfmt
+          rustup override set 1.99.1
+          rustup target add aarch64-apple-ios aarch64-apple-ios-sim
+      - name: Restore Rust build progress
+        id: rust-cache
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ipad-${{ runner.os }}-${{ runner.arch }}-rust1.99.1-${{ hashFiles('Cargo.lock') }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            ipad-${{ runner.os }}-${{ runner.arch }}-rust1.99.1-${{ hashFiles('Cargo.lock') }}-
+      - name: Validate native source and packaging
+        run: |
+          cargo fmt --package photocraft-ipad -- --check
+          python3 packaging/ipad/test_build.py
+          cargo check --locked -p photocraft-ipad --target aarch64-apple-ios
+          cargo clippy --locked -p photocraft-ipad --target aarch64-apple-ios -- -D warnings
+      - name: Build and launch the native iPad Simulator app
+        if: inputs.target == 'simulator'
+        run: python3 packaging/ipad/build.py --simulator --smoke-test --output dist/ipad-simulator
+      - name: Build the native device IPA for personal signing
+        if: inputs.target == 'device'
+        run: python3 packaging/ipad/build.py --output dist/ipad-device
+      - name: Save the build and verification evidence
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: PhotoCraft-iPad-${{ inputs.target }}
+          path: |
+            dist/ipad-*/*.ipa
+            dist/ipad-*/*.zip
+            dist/ipad-*/build-report.json
+            dist/ipad-*/ipad-simulator.png
+          if-no-files-found: ignore
+          retention-days: 7
+      - name: Save Rust build progress
+        if: always() && steps.rust-cache.outputs.cache-primary-key != ''
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ steps.rust-cache.outputs.cache-primary-key }}
