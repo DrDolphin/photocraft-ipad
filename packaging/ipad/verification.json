@@ -1,0 +1,66 @@
+{
+  "checked_at": "2026-10-25T23:10:10.372767+00:00",
+  "fork": "https://github.com/DrDolphin/photocraft-ipad",
+  "app_source_commit": "d762959ce0a73585fe990df1bb994b8ddafc37e3",
+  "upstream_version": "0.16.0",
+  "upstream_commit": "b1794c6e0608ccfc887213dcf58398977c5cb75e",
+  "standard_runner": "macos-15",
+  "cloud_builds": {
+    "device": {
+      "run_id": 40241659720,
+      "url": "https://github.com/DrDolphin/photocraft-ipad/actions/runs/40241659720",
+      "conclusion": "success"
+    },
+    "simulator": {
+      "run_id": 40241266957,
+      "url": "https://github.com/DrDolphin/photocraft-ipad/actions/runs/40241266957",
+      "conclusion": "success"
+    }
+  },
+  "device_package": {
+    "ipa": "PhotoCraft-iPad-unsigned.ipa",
+    "bytes": 31091589,
+    "sha256": "0e54f7dd957ff16e0e2d87191b28bbf74eb4ad4f69597fc2f89d8ba208455f62",
+    "bundle_identifier": "com.personal.photocraft.ipad",
+    "version": "0.16.0",
+    "architecture": "ARM64",
+    "format": "native Mach-O executable",
+    "apple_build": {
+      "platform_id": 2,
+      "minimum_os": "17.0.0",
+      "sdk": "18.5.0"
+    },
+    "minimum_ipados_plist": "17.0",
+    "ipad_only": true,
+    "files_integration": true,
+    "embedded_provisioning_profile": false,
+    "personal_signing_required": true,
+    "verification": "passed"
+  },
+  "simulator": {
+    "target": "aarch64-apple-ios-sim",
+    "device": "iPad (10th generation)",
+    "native_process_survived_12_seconds": true,
+    "screenshot": "PhotoCraft-native-iPad-Simulator.png",
+    "screenshot_sha256": "3bec0d4ce3c62c797ce281d7d22f607811846549d2dcc043c67243e61b9494c4",
+    "visually_inspected": true,
+    "observation": "Native editor and first-run dialog render with readable text and controls."
+  },
+  "local_checks": {
+    "device_and_simulator_cargo_check": "passed",
+    "ipad_clippy_all_targets_warnings_denied": "passed",
+    "native_file_service_tests_passed_on_windows": 4,
+    "unix_symlink_test": "present; not executed on Windows",
+    "packaging_unit_tests_passed": 4,
+    "native_file_chooser_orientation_renders_inspected": 3,
+    "dependency_layering": "32 crates; no violations",
+    "rust_format": "passed"
+  },
+  "physical_ipad_tested": false,
+  "apple_pencil_tested": false,
+  "device_signing": "Personal signing is required; no distribution provisioning profile is included.",
+  "limitations": [
+    "System document and Photos pickers, Share/Open With and system image clipboard are not implemented.",
+    "Physical-device rotation, background suspension and memory behavior remain untested."
+  ]
+}

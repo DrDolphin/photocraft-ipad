@@ -1,6 +1,6 @@
 # Native iPad development fork
 
-See [IPAD.md](IPAD.md) for the experimental native iPadOS port, build commands, current limitations, and cloud Mac workflow. The original editor is pinned to PhotoCraft 0.16.0. Apple SDK linking, signing, and device verification are pending; this is not an official ArtCraft release.
+See [IPAD.md](IPAD.md) for the experimental native iPadOS port, build commands, current limitations, and cloud Mac workflow. The original editor is pinned to PhotoCraft 0.16.0. An unsigned ARM64 device IPA has been built with Apple's SDK, and the native app passed an iPad Simulator startup check. Download the [iPad preview](https://github.com/DrDolphin/photocraft-ipad/releases/tag/ipad-v0.16.0-alpha.1) and follow the [Windows installation guide](packaging/ipad/INSTALL-WINDOWS.txt). Personal signing and physical-device testing are required; this is an independent development fork.
 
 ---
 

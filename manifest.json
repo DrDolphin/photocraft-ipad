@@ -2,8 +2,8 @@
   "name": "PhotoCraft native iPad port",
   "type": "Experimental native iPadOS app",
   "stack": "Rust, egui/eframe, wgpu/Metal, Python packaging, Xcode SDK, GitHub Actions",
-  "status": "in development; Apple SDK build and device verification pending",
-  "description": "Native iPadOS development fork of PhotoCraft 0.16.0 with Metal rendering, sandboxed Files access and a manual cloud Mac build workflow. Source checks are available on Windows; no signed iPad app is produced yet.",
+  "status": "experimental preview; device IPA built and Simulator startup verified; physical iPad untested",
+  "description": "Native iPadOS 17+ fork of PhotoCraft 0.16.0 with Metal rendering, sandboxed Files access and manual public cloud Mac builds. An unsigned ARM64 IPA is available for personal Windows signing; the app passed an iPad Simulator startup check.",
   "scripts": {
     "check": "cargo check --locked -p photocraft-ipad --target aarch64-apple-ios",
     "test": "cargo test --locked -p photocraft-ipad --bin photocraft-ipad",

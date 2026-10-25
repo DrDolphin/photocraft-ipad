@@ -1,0 +1,25 @@
+PhotoCraft native iPad development build — install from Windows
+
+Requirements: iPadOS 17 or later, a Windows PC, a USB cable, and your own Apple account.
+
+Use PhotoCraft-iPad-unsigned.ipa. It is a native ARM64 iPad app built with Apple's SDK. The source ZIP and Simulator ZIP are for development.
+
+1. Download Sideloadly from https://sideloadly.io/ and follow its Windows setup requirements. The vendor requires Apple's web versions of iTunes and iCloud.
+2. Connect and unlock the iPad. Accept Trust This Computer if asked.
+3. Open Sideloadly, select the iPad, and load PhotoCraft-iPad-unsigned.ipa.
+4. Sign in with your Apple account inside Sideloadly and start installation. Complete any authentication prompts yourself.
+5. Follow the iPad's instructions for trusting the developer and enabling Developer Mode if requested.
+6. Open PhotoCraft from the Home Screen.
+
+With a free Apple account, the signature expires after seven days. Sideloadly offers automatic refreshing; see its current instructions.
+
+To edit a picture, copy it into Files > On My iPad > PhotoCraft, then use File > Open in the editor. Save/export into the same folder and use Files to copy or share the result. Keep saved copies before changing apps.
+
+This is an independent, experimental native port of PhotoCraft 0.16.0. Physical-iPad installation, Apple Pencil, rotation and background/memory behavior still require device testing. The system document/Photos pickers and Share/Open With are not implemented; use the app's Files folder.
+
+Device build: https://github.com/DrDolphin/photocraft-ipad/actions/runs/40241659720
+IPA SHA-256: 0e54f7dd957ff16e0e2d87191b28bbf74eb4ad4f69597fc2f89d8ba208455f62
+
+Source: https://github.com/DrDolphin/photocraft-ipad
+Windows signing setup and requirements: https://sideloadly.io/
+Apple device setup: https://developer.apple.com/documentation/xcode/running-your-app-on-simulated-or-physical-devices

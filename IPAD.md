@@ -2,7 +2,11 @@
 
 This is a separate, experimental fork of PhotoCraft **0.16.0**, pinned to upstream commit `b1794c6e0608ccfc887213dcf58398977c5cb75e`. The app is Rust, egui and wgpu using **Metal on iPadOS**. It does not use a browser or a webview. The original image engine and UI are reused.
 
-The native source passes an `aarch64-apple-ios` Rust compile check on Windows. **An actual Apple SDK link, Simulator launch, device installation, and Apple Pencil testing are still required.** Source checks do not produce an installable app.
+The native ARM64 device IPA was linked with Apple's iOS 18.5 SDK and its package was verified on **2026-10-25**. The same app source also built and launched on an **iPad (10th generation) Simulator**, survived the startup check, and produced a visually inspected screenshot. **Physical-iPad installation, Apple Pencil, rotation and background/memory behavior remain untested.** This is an experimental preview, not an official ArtCraft release.
+
+Download the unsigned device IPA from the [iPad preview release](https://github.com/DrDolphin/photocraft-ipad/releases/tag/ipad-v0.16.0-alpha.1), then follow [INSTALL-WINDOWS.txt](packaging/ipad/INSTALL-WINDOWS.txt). An unsigned IPA must be personally signed before installation. The package targets **iPadOS 17 or later**.
+
+The tested app source is commit `d762959ce0a73585fe990df1bb994b8ddafc37e3`. Build evidence: [device](https://github.com/DrDolphin/photocraft-ipad/actions/runs/40241659720), [Simulator](https://github.com/DrDolphin/photocraft-ipad/actions/runs/40241266957), and [verification record](packaging/ipad/verification.json). Documentation updates after that commit do not change the app code.
 
 ## What the first port includes
 
@@ -46,7 +50,7 @@ Outputs include the native `.app`, a Simulator ZIP or unsigned device IPA, and `
 
 The prepared **iPad Native** GitHub Actions workflow runs on a cloud Mac and starts only through **Run workflow**. It does not contain signing secrets and never asks for an Apple password. Simulator and device builds are separate manual runs.
 
-Running it needs a GitHub repository. GitHub's standard Mac runners are free for public repositories; private repositories use included Actions minutes and may incur charges after those are exhausted. Repository publication and use of a cloud runner should be chosen before dispatching it.
+The public fork is [DrDolphin/photocraft-ipad](https://github.com/DrDolphin/photocraft-ipad). GitHub's standard Mac runners are free for public repositories. In the fork's **Actions → iPad Native → Run workflow**, choose `device` for the unsigned IPA or `simulator` for the startup check. The workflow uses a standard `macos-15` runner and does not run automatically on pushes. Workflow artifacts expire after seven days; the preview release retains its download.
 
 An unsigned IPA **cannot be installed directly**. It must first be signed for the device. A developer membership can support TestFlight/ad-hoc distribution. Personal sideloading tools for Windows, such as Sideloadly, can sign a personal build using an Apple account; enter account details only in the signing tool yourself. Free signing has renewal and app-count limits. No Apple credentials belong in this repository or chat.
 
